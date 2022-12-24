@@ -471,7 +471,7 @@ numeric form.</p>
 <h4 id="byte-strings"><a class="header" href="#byte-strings">Byte Strings</a></h4>
 <p>Byte strings are quoted string literals prefixed by a <code>b</code>, e.g. <code>b&quot;Hello!\n&quot;</code>.</p>
 <p>These are ASCII encoded strings that allow for escape sequences. Currently, the supported escape
-sequences are:</p>
+sequences are</p>
 <table><thead><tr><th>Escape Sequence</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>\n</code></td><td>New line (or Line feed)</td></tr>
 <tr><td><code>\r</code></td><td>Carriage return</td></tr>
@@ -482,9 +482,9 @@ sequences are:</p>
 <tr><td><code>\xHH</code></td><td>Hex escape, inserts the hex byte sequence <code>HH</code></td></tr>
 </tbody></table>
 <h4 id="hex-strings"><a class="header" href="#hex-strings">Hex Strings</a></h4>
-<p>Hex strings are quoted string literals prefixed by a <code>x</code>, e.g. <code>x&quot;48656C6C6F210A&quot;</code>.</p>
+<p>Hex strings are quoted string literals prefixed by a <code>x</code>, e.g. <code>x&quot;48656C6C6F210A&quot;</code></p>
 <p>Each byte pair, ranging from <code>00</code> to <code>FF</code>, is interpreted as hex encoded <code>u8</code> value. So each byte
-pair corresponds to a single entry in the resulting <code>vector&lt;u8&gt;</code>.</p>
+pair corresponds to a single entry in the resulting <code>vector&lt;u8&gt;</code></p>
 <h4 id="example-string-literals"><a class="header" href="#example-string-literals">Example String Literals</a></h4>
 <pre><code class="language-move">script {
 fun byte_and_hex_strings() {
@@ -558,7 +558,7 @@ easier to see where they are happening.</p>
 <h2 id="ownership-3"><a class="header" href="#ownership-3">Ownership</a></h2>
 <p>As mentioned <a href="vector.html#destroying-and-copying-vectors">above</a>, <code>vector</code> values can be copied only if the
 elements can be copied. In that case, the copy must be explicit via a
-<a href="./variables.html#move-and-copy"><code>copy</code></a> or a <a href="./references.html#reading-and-writing-through-references">dereference <code>*</code></a>.</p>
+<a href="./variables.html#move-and-copy"><code>copy</code></a> or a <a href="./references.html#reference-operators">dereference <code>*</code></a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="signer"><a class="header" href="#signer">Signer</a></h1>
 <p><code>signer</code> is a built-in Move resource type. A <code>signer</code> is a
 <a href="https://en.wikipedia.org/wiki/Object-capability_model">capability</a> that allows the holder to act on
@@ -609,7 +609,7 @@ ensures that only an authenticated user can elect to publish a resource under th
 <h2 id="ownership-4"><a class="header" href="#ownership-4">Ownership</a></h2>
 <p>Unlike simple scalar values, <code>signer</code> values are not copyable, meaning they cannot be copied (from
 any operation whether it be through an explicit <a href="./variables.html#move-and-copy"><code>copy</code></a> instruction
-or through a <a href="./references.html#reading-and-writing-through-references">dereference <code>*</code></a>.</p>
+or through a <a href="./references.html#reference-operators">dereference <code>*</code></a>).</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="references"><a class="header" href="#references">References</a></h1>
 <p>Move has two types of references: immutable <code>&amp;</code> and mutable <code>&amp;mut</code>. Immutable references are read
 only, and cannot modify the underlying value (or any of its fields). Mutable references allow for
@@ -797,12 +797,12 @@ reference safety) would have to expand to support stored references. But it is s
 keeping an eye on as the language evolves.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tuples-and-unit"><a class="header" href="#tuples-and-unit">Tuples and Unit</a></h1>
 <p>Move does not fully support tuples as one might expect coming from another language with them as a
-<a href="https://en.wikipedia.org/wiki/First-class_citizen">first-class value</a>. However, in order to support multiple return values, Move has tuple-like
+first-class value. However, in order to support multiple return values, Move has tuple-like
 expressions. These expressions do not result in a concrete value at runtime (there are no tuples in
 the bytecode), and as a result they are very limited: they can only appear in expressions (usually
 in the return position for a function); they cannot be bound to local variables; they cannot be
 stored in structs; and tuple types cannot be used to instantiate generics.</p>
-<p>Similarly, <a href="https://en.wikipedia.org/wiki/Unit_type">unit <code>()</code></a> is a type created by the Move source language in order to be expression based.
+<p>Similarly, unit <code>()</code> is a type created by the Move source language in order to be expression based.
 The unit value <code>()</code> does not result in any runtime value. We can consider unit<code>()</code> to be an empty
 tuple, and any restrictions that apply to tuples also apply to unit.</p>
 <p>It might feel weird to have tuples in the language at all given these restrictions. But one of the
@@ -813,7 +813,7 @@ the multiple return values. However in Move, you cannot put references inside of
 multiple return values are all pushed on the stack at the bytecode level. At the source level, these
 multiple return values are represented using tuples.</p>
 <h2 id="literals-3"><a class="header" href="#literals-3">Literals</a></h2>
-<p>Tuples are created by a comma separated list of expressions inside of parentheses.</p>
+<p>Tuples are created by a comma separated list of expressions inside of parentheses</p>
 <table><thead><tr><th>Syntax</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>()</code></td><td><code>(): ()</code></td><td>Unit, the empty tuple, or the tuple of arity 0</td></tr>
 <tr><td><code>(e1, ..., en)</code></td><td><code>(e1, ..., en): (T1, ..., Tn)</code> where <code>e_i: Ti</code> s.t. <code>0 &lt; i &lt;= n</code> and <code>n &gt; 0</code></td><td>A <code>n</code>-tuple, a tuple of arity <code>n</code>, a tuple with <code>n</code> elements</td></tr>
@@ -824,18 +824,18 @@ disambiguation and do not carry any other special meaning.</p>
 <p>Sometimes, tuples with two elements are called &quot;pairs&quot; and tuples with three elements are called
 &quot;triples.&quot;</p>
 <h3 id="examples-2"><a class="header" href="#examples-2">Examples</a></h3>
-<pre><code class="language-move">address 0x42 {
+<pre><code class="language-move=">address 0x42 {
 module example {
     // all 3 of these functions are equivalent
 
     // when no return type is provided, it is assumed to be `()`
-    fun returns_unit_1() { }
+    fun returs_unit_1() { }
 
     // there is an implicit () value in empty expression blocks
-    fun returns_unit_2(): () { }
+    fun returs_unit_2(): () { }
 
-    // explicit version of `returns_unit_1` and `returns_unit_2`
-    fun returns_unit_3(): () { () }
+    // explicit version of `returs_unit_1` and `returs_unit_2`
+    fun returs_unit_3(): () { () }
 
 
     fun returns_3_values(): (u64, bool, address) {
@@ -852,7 +852,7 @@ module example {
 <h3 id="destructuring"><a class="header" href="#destructuring">Destructuring</a></h3>
 <p>For tuples of any size, they can be destructured in either a <code>let</code> binding or in an assignment.</p>
 <p>For example:</p>
-<pre><code class="language-move">address 0x42 {
+<pre><code class="language-move=">address 0x42 {
 module example {
     // all 3 of these functions are equivalent
     fun returns_unit() {}
@@ -883,22 +883,20 @@ module example {
 </code></pre>
 <p>For more details, see <a href="./variables.html">Move Variables</a>.</p>
 <h2 id="subtyping-1"><a class="header" href="#subtyping-1">Subtyping</a></h2>
-<p>Along with references, tuples are the only types that have <a href="https://en.wikipedia.org/wiki/Subtyping">subtyping</a> in Move. Tuples do have
+<p>Along with references, tuples are the only types that have subtyping in Move. Tuples do have
 subtyping only in the sense that subtype with references (in a covariant way).</p>
-<p>For example:</p>
-<pre><code class="language-move">let x: &amp;u64 = &amp;0;
+<p>For example</p>
+<pre><code class="language-move=">let x: &amp;u64 = &amp;0;
 let y: &amp;mut u64 = &amp;mut 1;
 
 // (&amp;u64, &amp;mut u64) is a subtype of (&amp;u64, &amp;u64)
-// since &amp;mut u64 is a subtype of &amp;u64
+//   since &amp;mut u64 is a subtype of &amp;u64
 let (a, b): (&amp;u64, &amp;u64) = (x, y);
-
 // (&amp;mut u64, &amp;mut u64) is a subtype of (&amp;u64, &amp;u64)
-// since &amp;mut u64 is a subtype of &amp;u64
+//   since &amp;mut u64 is a subtype of &amp;u64
 let (c, d): (&amp;u64, &amp;u64) = (y, y);
-
 // error! (&amp;u64, &amp;mut u64) is NOT a subtype of (&amp;mut u64, &amp;mut u64)
-// since &amp;u64 is NOT a subtype of &amp;mut u64
+//   since &amp;u64 is NOT a subtype of &amp;mut u64
 let (e, f): (&amp;mut u64, &amp;mut u64) = (x, y);
 </code></pre>
 <h2 id="ownership-6"><a class="header" href="#ownership-6">Ownership</a></h2>
@@ -4200,8 +4198,8 @@ Running Move unit tests
 [ PASS    ] 0x1::my_module::make_sure_zero_coin_fails
 Test result: OK. Total tests: 2; passed: 2; failed: 0
 </code></pre>
-<h4 id="-i-bound-or---gas_used-bound"><a class="header" href="#-i-bound-or---gas_used-bound"><code>-i &lt;bound&gt;</code> or <code>--gas_used &lt;bound&gt;</code></a></h4>
-<p>This bounds the amount of gas that can be consumed for any one test to <code>&lt;bound&gt;</code>:</p>
+<h4 id="-i-bound-or---instructions-bound"><a class="header" href="#-i-bound-or---instructions-bound"><code>-i &lt;bound&gt;</code> or <code>--instructions &lt;bound&gt;</code></a></h4>
+<p>This bounds the number of instructions that can be executed for any one test to <code>&lt;bound&gt;</code>:</p>
 <pre><code>$ move test -i 0
 CACHED MoveStdlib
 BUILDING TestExample
@@ -4231,7 +4229,7 @@ Failures in 0x1::my_module:
 Test result: FAILED. Total tests: 3; passed: 0; failed: 3
 </code></pre>
 <h4 id="-s-or---statistics"><a class="header" href="#-s-or---statistics"><code>-s</code> or <code>--statistics</code></a></h4>
-<p>With these flags you can gather statistics about the tests run and report the runtime and gas used for each test. For example, if we wanted to see the statistics for the tests in the example above:</p>
+<p>With these flags you can gather statistics about the tests run and report the runtime and instructions executed for each test. For example, if we wanted to see the statistics for the tests in the example above:</p>
 <pre><code>$ move test -s
 CACHED MoveStdlib
 BUILDING TestExample
@@ -4243,7 +4241,7 @@ Running Move unit tests
 Test Statistics:
 
 ┌────────────────────────────────────────────────┬────────────┬───────────────────────────┐
-│                   Test Name                    │    Time    │   Gas Used   │
+│                   Test Name                    │    Time    │   Instructions Executed   │
 ├────────────────────────────────────────────────┼────────────┼───────────────────────────┤
 │ 0x1::my_module::make_sure_non_zero_coin_passes │   0.009    │             1             │
 ├────────────────────────────────────────────────┼────────────┼───────────────────────────┤
